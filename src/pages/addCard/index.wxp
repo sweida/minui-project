@@ -1,0 +1,60 @@
+<template>
+  <!-- <view>添加信用卡</view>
+  <view>账单日</view>
+  <view>还款日</view> -->
+  <view>
+    <view class="list-item">
+      <wxc-list title="添加信用卡" desc="选择信用卡" mode="none" ></wxc-list>
+      <wxc-list title="账单日" desc="请选择账单日" mode="none"></wxc-list>
+      <wxc-list title="还款日" desc="请选择还款日" mode="none"></wxc-list>
+    </view>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="picker">
+        当前选择：{{array[index]}}
+      </view>
+    </picker>
+  </view>
+
+</template>
+
+<script>
+export default {
+  config: {
+    navigationBarTitleText: '添加银行卡',
+    usingComponents: {
+      'wxc-list': '@minui/wxc-list'
+    }
+  },
+  data: {
+    array: ['美国', '中国', '巴西', '日本'],
+    objectArray: [
+      {
+        id: 0,
+        name: '美国'
+      },
+      {
+        id: 1,
+        name: '中国'
+      },
+      {
+        id: 2,
+        name: '巴西'
+      },
+      {
+        id: 3,
+        name: '日本'
+      }
+    ],
+    index: 0,
+  },
+  bindPickerChange(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
+  },
+}
+</script>
+
+<style>
+</style>
